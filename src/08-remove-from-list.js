@@ -17,8 +17,11 @@
  * }
  */
 
-function removeKFromList(/* l, k */) {
-  throw new Error('Not implemented');
+function removeKFromList(l, k) {
+  // throw new Error('Not implemented');
+  return l.join(',').replace(new RegExp(`${k}`, 'g'), '').split(',').filter((el) => !!el);
 }
-
+let l = [3, 1, 2, 3, 4, 5];
+let k = 1;
+console.log(removeKFromList(l, k));
 module.exports = removeKFromList;
