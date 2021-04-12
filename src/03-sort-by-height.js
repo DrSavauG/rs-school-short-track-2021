@@ -10,12 +10,13 @@
  * The result should be [-1, 150, 160, 170, -1, -1, 180, 190]
  */
 function sortByHeight(arr) {
-  // throw new Error('Not implemented');
-  const sorted = arr.filter((el) => el >= 0).sort().reverse();
-  // console.log(sorted);
-
-  return arr.map((el) => el >= 0 ? el = sorted.pop() : el)
+  const sorted = arr.filter((el) => el >= 0).sort((a, b) => b - a);
+  const result = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] < 0) {
+      result[i] = arr[i];
+    } else result[i] = sorted.pop();
+  }
+  return result;
 }
-const arr = [-1, 150, 190, 170, -1, -1, 160, 180];
-console.log(sortByHeight(arr));
 module.exports = sortByHeight;
