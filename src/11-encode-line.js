@@ -10,27 +10,17 @@
  */
 function encodeLine(str) {
   const result = [];
-  let number = '';
+  let number = 1;
   for (let i = 0; i < str.length; i++) {
-    if (str[i] === str[i + 1]) {
-      number += 2;
-      continue;
-      // break;
+    if (str[i] !== str[i + 1]) {
+      result.push(number);
+      result.push(str[i]);
+      number = 1;
+    } else {
+      number++;
     }
-    //  else {
-    result.push(number);
-    result.push(str[i]);
-    number = '';
-    // }
   }
-  // if (str[i] !== str[i + 1]) {
-  //   result.push(str[i]);
-  // } else {
-  //   result.push(number);
-  // }
-  // }
-  return result.join('');
+  return result.join('').replace(/1/g, '');
 }
-let str = 'abbcca'; //'4a4t'
-console.log(encodeLine(str));
+
 module.exports = encodeLine;
