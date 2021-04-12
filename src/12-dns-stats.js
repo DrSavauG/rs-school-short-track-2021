@@ -20,8 +20,33 @@
  * }
  *
  */
-function getDNSStats(/* domains */) {
-  throw new Error('Not implemented');
-}
+function getDNSStats(domains) {
+  const result = {};
+  const expFirst = /\.\w*$/;
+  const expSecond = /.\w*\.\w*$/;
+  const expThird = /\w*.\w*\.\w*$/;
 
-module.exports = getDNSStats;
+  function findings(reg) {
+    for (let i = 0; i < domains.length; i++) {
+      // const regexp =
+      const name = domains[i].split('.').reverse().join('.')
+      console.log(name);
+      // .reverse().join('').match(reg)[0];
+      if (!result[name]) {
+        result[name] = 1;
+      } else result[name] += 1;
+    }
+  }
+  findings(expFirst);
+  findings(expSecond);
+  findings(expThird);
+  return result;
+}
+let domains = [
+  'code.yandex.ru',
+  'music.yandex.ru',
+  'yandex.ru'
+]
+console.log(getDNSStats(domains));
+
+// module.exports = getDNSStats;
