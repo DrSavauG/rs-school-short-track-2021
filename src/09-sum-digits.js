@@ -13,6 +13,5 @@
 function getSumOfDigits(n) {
   return ((n - 1) % 9) + 1;
 }
-// let n = 123;
-// console.log(getSumOfDigits(n));
+
 module.exports = getSumOfDigits;
