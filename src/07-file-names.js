@@ -9,12 +9,25 @@
  * @return {Array}
  *
  * @example
- * For input ["file", "file", "image", "file(1)", "file"],
- * the output should be ["file", "file(1)", "image", "file(1)(1)", "file(2)"]
- *
+ * For input ['file', 'file', 'image', 'file(1)', 'file'],
+ * the output should be ['file', 'file(1)', 'image', 'file(1)(1)', 'file(2)']
+ *['doc', 'doc', 'image', 'doc(1)', 'doc']), ['doc', 'doc(1)', 'image', 'doc(1)(1)', 'doc(2)'])
  */
-function renameFiles(/* names */) {
-  throw new Error('Not implemented');
+function renameFiles(names) {
+  const renames = {};
+  const result = [];
+  for (let i = 0; i < names.length; i++) {
+    if (renames[names[i]]) {
+      renames[names[i]] += 1;
+    } else renames[names[i]] = 1;
+    if (result.some((el) => el === names[i])) {
+      const push = `${names[i]}(${renames[names[i]] - 1})`;
+      result.push(push);
+      renames[push] = 1;
+    } else {
+      result.push(names[i]);
+    }
+  }
+  return result;
 }
-
 module.exports = renameFiles;
